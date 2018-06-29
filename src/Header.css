@@ -1,0 +1,54 @@
+.Header {
+    text-align: center;
+}
+
+/*.Header-logo {*/
+    /*animation: Header-logo-spin infinite 1s linear;*/
+    /*height: 80px;*/
+/*}*/
+
+.Header-back {
+    background-color: #fff;
+    height: 150px;
+    padding: 20px;
+    color: lightgrey;
+}
+
+.Header-title {
+    font-size: 45px;
+}
+
+.Header-intro {
+    font-size: large;
+}
+
+.topNav{
+    height: 60px;
+    background: #f2f2f2;
+}
+
+.topNav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    color: #333;
+    height: 32px;
+    width: 100px;
+}
+
+.topNav a.active {
+    background: aquamarine;
+}
+
+.topNav a:hover{
+    background:mediumaquamarine;
+    cursor: pointer;
+}
+
+/*@keyframes Header-logo-spin {*/
+    /*from { transform: rotate(0deg); }*/
+    /*to { transform: rotate(360deg); }*/
+/*}*/
