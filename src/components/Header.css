@@ -1,5 +1,6 @@
 .Header {
     text-align: center;
+
 }
 
 /*.Header-logo {*/
@@ -8,44 +9,67 @@
 /*}*/
 
 .Header-back {
-    background-color: #fff;
-    height: 150px;
+    height: 180px;
     padding: 20px;
-    color: lightgrey;
+    color: grey;
 }
 
 .Header-title {
-    font-size: 45px;
+    font-size: 60px;
+    font-family:"Bodoni MT Black";
 }
 
 .Header-intro {
     font-size: large;
+    font-family:"Bodoni MT";
+
 }
 
 .topNav{
     height: 60px;
-    background: #f2f2f2;
+    border-top: #f2f2f2 1px solid;
+    font-family:"Times New Roman";
 }
 
-.topNav a {
+.navLeft{
+    width: 60%;
+    height: 100%;
+    float: left;
+}
+
+.navRight{
+    width: 30%;
+    height: 100%;
+    float: right;
+
+}
+
+#signInNav{
+    float: right;
+}
+
+.nav {
     float: left;
     color: #f2f2f2;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 20px;
     color: #333;
     height: 32px;
     width: 100px;
+    -webkit-transition:  200ms; /* For Safari 3.1 to 6.0 */
+    transition:  200ms;
 }
 
-.topNav a.active {
-    background: aquamarine;
+.nav.active {
+    background: #75ecc4;
 }
 
-.topNav a:hover{
+.nav:hover{
     background:mediumaquamarine;
     cursor: pointer;
+    color: white;
 }
 
 /*@keyframes Header-logo-spin {*/

@@ -1,0 +1,67 @@
+.singleArticle{
+    width: 800px;
+    margin: 40px auto;
+    background: white;
+    height: 500px;
+    text-align: center;
+    font-size: x-large;
+    -webkit-transition:  300ms; /* For Safari 3.1 to 6.0 */
+    transition:  300ms;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position: relative;
+    font-family:"Bodoni MT";
+
+}
+
+.singleArticle:hover{
+    width: 820px;
+    height: 520px;
+    margin: 35px auto;
+}
+
+.singleArticle-content{
+    height: 390px;
+    padding: 15px 30px;
+    color: #555555;
+
+}
+
+.singleArticle h3{
+    color: #555;
+
+}
+
+.singleArticle hr{
+    color:#eee;
+    background-color:#eee;
+    height:1.5px;
+    border:none;
+}
+
+.singleArticle-bar{
+    height: 80px;
+    background: #55aa8d;
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    color: white;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.singleArticle-more{
+    width: 20%;
+    height: 55px;
+    float: right;
+    padding: 25px 0 0 0;
+    font-size: medium;
+}
+
+.singleArticle-info{
+    width: 40%;
+    height: 55px;
+    padding: 25px 0 0 0;
+    float: left;
+    font-size: medium;
+    text-align: left;
+    margin: 0 20px;
+}
