@@ -1,0 +1,91 @@
+
+.root{
+    height: 100%;  
+    width: 100%;  
+    position: absolute;  
+    top: 0px;  
+    bottom: 0px;  
+   z-index: 0;  
+overflow:hidden; word-break:break-all;
+
+}
+
+.frame{
+    width: 600px;
+    height: 600px;
+    background: black;
+    word-wrap:break-word; 
+    word-break:break-all; 
+    overflow: hidden;
+
+}
+
+.box0,.box2,.box4,.box8, .box16,.box32, .box64, .box128, .box256, .box512, .box1024, .box2048, .box4096, .box8192{
+    width: 150px;
+    height: 150px;
+    font-size: 36px;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border: 2px solid white;
+    float: left;
+    display: flex;
+}
+
+
+.box0{
+    background: #919191
+}
+
+.box2{
+    background: #339966
+}
+
+.box4{
+    background: #f85bd685
+}
+
+.box8{
+    background: #e2bc3fb7
+}
+
+.box16{
+    background: #9999CC
+}
+
+.box32{
+    background: rgb(56, 99, 107)
+}
+
+.box64{
+    background: rgb(53, 84, 153)
+}
+
+.box128{
+    background: rgb(188, 101, 206)
+}
+
+.box256{
+    background: rgb(179, 166, 56)
+}
+
+.box512{
+    background: #CC9966
+}
+
+.box1024{
+    background: rgb(146, 49, 78)
+}
+
+.box2048{
+    background: rgba(160, 44, 40, 0.658)
+}
+
+.box4096{
+    background: rgb(45, 58, 50)
+}
+
+.box8192{
+    background: rgb(0, 0, 0)
+}
+
