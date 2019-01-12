@@ -13,9 +13,15 @@ class App extends Component {
                    [0,0,0,0], 
                    [0,0,0,0], 
                    [0,0,0,0]],
+           
             end:false,
-            score:0
+            score:0,
+            init:false,
         }
+    }
+
+    componentDidMount(){
+        window.addEventListener("keydown", this.move, false);
     }
 
     addScore(num){
@@ -24,6 +30,7 @@ class App extends Component {
 
     toLeft=()=>{
         var arr= this.state.data;
+        var tmp=JSON.parse(JSON.stringify(arr));
         for(var x=0; x<arr.length;x++){
             var queue = [];
             for(var y=0;y<arr[0].length;y++){
@@ -46,11 +53,17 @@ class App extends Component {
             }            
         }
 
-        this.setState({data:arr})
+        if(!this.checkChange(arr,tmp)){
+            this.setState({data:arr})
+            this.addNew();
+        }
+
+
     }
 
     toRight=()=>{
         var arr= this.state.data;
+        var tmp=JSON.parse(JSON.stringify(arr));
         for(var x=0; x<arr.length;x++){
             var queue = [];
             for(var y=0;y<arr[0].length;y++){
@@ -73,11 +86,16 @@ class App extends Component {
             }            
         }
 
-        this.setState({data:arr})
+
+        if(!this.checkChange(arr,tmp)){
+            this.setState({data:arr})
+            this.addNew();
+        }
     }
 
     toUp=()=>{
-        var arr= this.state.data;
+        var arr= this.state.data;        
+        var tmp=JSON.parse(JSON.stringify(arr));
         for(var y=0; y<arr[0].length;y++){
             var queue = [];
             for(var x=0;x<arr.length;x++){
@@ -101,12 +119,16 @@ class App extends Component {
             }            
         }
 
-        this.setState({data:arr})
+        if(!this.checkChange(arr,tmp)){
+            this.setState({data:arr})
+            this.addNew();
+        }
     }
 
 
     toDown=()=>{
         var arr= this.state.data;
+        var tmp=JSON.parse(JSON.stringify(arr));
         for(var y=0; y<arr[0].length;y++){
             var queue = [];
             for(var x=0;x<arr.length;x++){
@@ -130,7 +152,10 @@ class App extends Component {
             }            
         }
 
-        this.setState({data:arr})
+        if(!this.checkChange(arr,tmp)){
+            this.setState({data:arr})
+            this.addNew();
+        }
     }
 
     checkEmpty=()=>{
@@ -145,9 +170,36 @@ class App extends Component {
         return empty;
     }
 
-    move=(e)=>{
+    checkChange=(a,b)=>{
 
-        if(!this.state.end){
+        for(var x=0; x<a.length;x++){
+            for(var y=0;y<a[0].length;y++){
+                if(a[x][y]!==b[x][y]){
+                    return false
+                }
+                    
+            }
+        }
+        return true;
+    }
+
+    addNew=()=>{
+        var empty=this.checkEmpty();
+        if(empty.length>0){
+            this.setState({predata:this.state.data})
+            var arr = this.state.data;
+            var point = empty[Math.floor(Math.random() * empty.length )]
+            var newNum = [2,2,2,2,4]
+            arr[point[0]][point[1]]=newNum[Math.floor(Math.random() * newNum.length )]
+            this.setState({data:arr})
+        }
+        else{
+            this.setState({end:true})
+        }
+    }
+
+    move=(e)=>{
+        if(!this.state.end ){
             switch(e.keyCode) {
                 case 37:
                   this.toLeft();
@@ -165,39 +217,72 @@ class App extends Component {
                   break;
             }
 
-            var empty=this.checkEmpty();
-            if(empty.length>0){
-                var arr = this.state.data;
-                var point = empty[Math.floor(Math.random() * empty.length )]
-                var newNum = [2,2,2,4]
-                arr[point[0]][point[1]]=newNum[Math.floor(Math.random() * newNum.length )]
-                this.setState({data:arr})
-            }
-            else{
-                this.setState({end:true})
-            }
-
         }
+        
+        if(this.end()){this.setState({end:true})}
           
     }
 
 
-    start=()=>{
+    restart=()=>{
         var arr= this.state.data;
         for(var x=0; x<arr.length;x++){
             for(var y=0;y<arr[0].length;y++){
                 arr[x][y]=0
             }
         }
+        var i = Math.floor(Math.random() * 4)
+        var j = Math.floor(Math.random() * 4)
+        arr[i][j]=2
         this.setState({data:arr,end:false,score:0})
+    }
+
+    init=()=>{
+        var x = Math.floor(Math.random() * 4)
+        var y = Math.floor(Math.random() * 4)
+        var arr = this.state.data;
+        arr[x][y]=2
+        this.setState({data:arr,end:false,score:0, init:true})
+    }
+
+
+    end=()=>{
+        var arr= this.state.data;
+        if(this.checkEmpty().length===0){
+            for(var x=0; x<arr.length;x++){
+                for(var y=0;y<arr[0].length;y++){
+                    var top=x-1;
+                    var right = y+1;
+                    var bottom = x+1;
+                    var left = y-1;
+                    if(top>=0 && arr[top][y]===arr[x][y])
+                        return false
+                    if(bottom<4 && arr[bottom][y]===arr[x][y])
+                        return false
+                    if(left>=0 && arr[x][left]===arr[x][y])
+                        return false
+                    if(right<4 && arr[x][right]===arr[x][y])
+                        return false
+    
+                }
+            }
+            return true;
+        }
+        else
+            return false;
+        
+        
+
     }
   render() {
 
-
-
     return ( 
-        <div className= "root" onKeyDown={this.move} tabIndex="0">
+        <div className= "root" >
+         <div className="score">Score: {this.state.score}</div>
+        
         <div className= "frame" > 
+       
+      
             {this.state.data.map(row=>{
                 return(
                     <div>{row.map(point=>{
@@ -212,11 +297,17 @@ class App extends Component {
                 
 
                 )}
-        
+
         </div>
-        <h1>{this.state.score}</h1>
-        {this.state.end?<div><h1>end</h1>
-        <button onClick={this.start}>Restart</button></div>:null}
+        <div className="tool">
+        {this.state.init?null: <button id="1" className="btn" onClick={this.init}>Start</button>}
+        {this.state.end?<div><div className="end">End</div>
+        <button id="2" className="btn" onClick={this.restart}>Restart</button></div>:null}
+        <div>
+
+        </div>
+        </div>
+      
          </div>);
   }
 }
